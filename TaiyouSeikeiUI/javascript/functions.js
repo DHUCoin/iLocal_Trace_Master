@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 	//Change address to the database address in use////////////////////////////////////////////////////////
-	var DatabaseAddr = '0x41f29382c2909682b54e083edb8bb00ca0359dc3';
+	var DatabaseAddr = '0x68666f7f023e8c6b4a2ca615885d00e668af76b1';
 
 	//Initiating web3 provider
 	if (typeof web3 !== 'undefined') {
@@ -62,7 +62,7 @@ $(document).ready(function () {
 	]);
 
 	//Change address to the productFactory address in use////////////////////////////////////////////////////////////////
-	var _ProductFactory = ProductFactory.at('0x773373c43f604c7ce01b55e9e26c055d6c9ecf53');
+	var _ProductFactory = ProductFactory.at('0xa9b58483771f7b94934cc5425182d076987ddfd5');
 
 	//button to use createProduct function of the product factory
 	$("#createProductCat").click(function () {
