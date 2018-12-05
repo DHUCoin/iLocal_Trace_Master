@@ -232,6 +232,32 @@
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label>タイムスタンプ</label>
+                          <input type="text" class="form-control" id="timestamp">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label>ブロック数</label>
+                          <input type="text" class="form-control" id="blockNumber">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>ブロックエキスプローラURL</label>
+                          <div>
+                            <a href="" id="blockchainURL" target="_blank"></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -489,17 +515,23 @@
                               if (err) {} else {
                                 contract.ownerInfo((err, res7) => {
                                   if (err) {} else {
-                                    var obj = {
-                                      name: res1,
-                                      additionalInfo: res2,
-                                      database: res3,
-                                      productCat: res4,
-                                      owner: res5,
-                                      ownerName: res6,
-                                      ownerInfo: res7
-                                    };
-                                    populateTableDetail(obj);
-                                    hideloader();
+                                    contract.actions(0, (err, res8) => {
+                                      if (err) {} else {
+                                        var obj = {
+                                          productAddr: productAddress,
+                                          name: res1,
+                                          additionalInfo: res2,
+                                          database: res3,
+                                          productCat: res4,
+                                          owner: res5,
+                                          ownerName: res6,
+                                          ownerInfo: res7,
+                                          creation: res8
+                                        };
+                                        populateTableDetail(obj);
+                                        hideloader();
+                                      }
+                                    });
                                   }
                                 });
                               }
@@ -524,6 +556,10 @@
         document.getElementById('ownerAddress').value = product.owner;
         document.getElementById('ownerName').value = product.ownerName;
         document.getElementById('ownerInfo').value = product.ownerInfo;
+        document.getElementById('timestamp').value = product.creation[2];
+        document.getElementById('blockNumber').value = product.creation[3];
+        document.getElementById('blockchainURL').href = 'https://rinkeby.etherscan.io/address/' + product.productAddr;
+        document.getElementById('blockchainURL').innerHTML = 'https://rinkeby.etherscan.io/address/' + product.productAddr;
 
 
         // var elmtTable = document.getElementById('productsTableDetail');
